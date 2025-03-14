@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    restart: always
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app  # Mount the current directory to the container's /app directory
+    environment:
+      - DB_NAME=./db.sqlite3  # SQLite file location in your project
+
