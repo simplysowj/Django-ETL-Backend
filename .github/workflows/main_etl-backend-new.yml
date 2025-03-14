@@ -31,7 +31,7 @@ jobs:
       with:
         push: true
         tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_401222c801b5475884235f8e1a0d147a }}/simplysowj/django-backend::latest'
-        file: ./Dockerfile
+        file: ./orm1/Dockerfile 
 
   deploy:
     runs-on: ubuntu-latest
