@@ -1,0 +1,22 @@
+# Git ignore file 
+# Ignore virtual environments
+venv/
+myenv/
+
+# Ignore database file (if using SQLite)
+db.sqlite3
+
+# Ignore compiled Python files
+__pycache__/
+*.pyc
+
+# Ignore environment variables
+.env
+
+# Ignore static files (if using collectstatic)
+staticfiles/
+
+# Ignore IDE-specific files
+.vscode/
+.idea/
+
