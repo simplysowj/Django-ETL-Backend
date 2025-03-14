@@ -1,25 +1,23 @@
-# Use official Python image as base
-FROM python:3.11
+# Step 1: Use the official Python image as a base
+FROM python:3.11-slim
 
-# Set the working directory inside the container
+# Step 2: Set the working directory inside the container
 WORKDIR /app
 
-# Copy the requirements file and install dependencies
-COPY requirements.txt . 
+# Step 3: Copy the backend code into the container
+
+COPY requirements.txt /app/requirements.txt
+# Step 4: Install dependencies from requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the entire backend project (including app, project, manage.py, etc.)
-COPY . /app  
+# Step 5: Copy the rest of the backend code into the container
+COPY orm1 /app
 
-# Set environment variables
-ENV PYTHONUNBUFFERED 1
-
-# Collect static files (optional for production)
-RUN python manage.py collectstatic --noinput
-
-# Expose the application port
+# Step 6: Expose port 8000 for the Django app
 EXPOSE 8000
 
-# Run the Django application using Gunicorn
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "orm1.wsgi:application"]
+# Step 7: Set environment variables for Python
+ENV PYTHONUNBUFFERED=1
 
+# Step 8: Run Django migrations and start the app
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "orm1.wsgi:application"]

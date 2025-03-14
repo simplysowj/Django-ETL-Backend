@@ -1,13 +1,21 @@
 version: '3.8'
-
 services:
-  web:
-    build: .
-    restart: always
+  backend:
+    build:
+      context: ./orm1
+    container_name: django-backend
+    volumes:
+      - ./orm1:/app
+      - ./db:/app/db  # SQLite database volume
     ports:
       - "8000:8000"
-    volumes:
-      - .:/app  # Mount the current directory to the container's /app directory
     environment:
-      - DB_NAME=./db.sqlite3  # SQLite file location in your project
+      - DB_NAME=/app/db/db.sqlite3  # Path to the SQLite DB file inside the container
+    networks:
+      - mynetwork
+    command: ["gunicorn", "--bind", "0.0.0.0:8000", "orm1.wsgi:application"]
+
+networks:
+  mynetwork:
+    driver: bridge
 
