@@ -30,7 +30,7 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_401222c801b5475884235f8e1a0d147a }}/simplysowj/django-backend:${{ github.sha }}
+        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_401222c801b5475884235f8e1a0d147a }}/simplysowj/django-backend::latest'
         file: ./Dockerfile
 
   deploy:
