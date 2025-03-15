@@ -40,11 +40,11 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'your-default-secret-key')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+#ALLOWED_HOSTS = ["*"]
 
 ALLOWED_HOSTS = ['https://616b-2601-cb-8200-61c0-f547-8d04-27f4-4b4e.ngrok-free.app',
                 "localhost", "127.0.0.1",'616b-2601-cb-8200-61c0-f547-8d04-27f4-4b4e.ngrok-free.app',
-                'etl-backend-new-gwaygxdxgedhdjaz.eastus2-01.azurewebsites.net']
+                'etl-backend-new-gwaygxdxgedhdjaz.eastus2-01.azurewebsites.net' ]
 CSRF_TRUSTED_ORIGINS = ["https://616b-2601-cb-8200-61c0-f547-8d04-27f4-4b4e.ngrok-free.app",
                         "https://etlbackenddjango.azurewebsites.net"]
 
