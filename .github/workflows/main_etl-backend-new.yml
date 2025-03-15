@@ -52,6 +52,6 @@ jobs:
     - name: Create Django superuser
       run: |
         echo "Creating Django superuser..."
-        docker exec -it 06ac6936_etl-backend-new python manage.py createsuperuser --noinput --username admin --email admin@example.com --password $DJANGO_SUPERUSER_PASSWORD
+        docker exec -it ec4b207cae27 python manage.py createsuperuser --noinput --username admin --email admin@example.com --password $DJANGO_SUPERUSER_PASSWORD
       env:
         DJANGO_SUPERUSER_PASSWORD: ${{ secrets.DJANGO_SUPERUSER_PASSWORD }}
