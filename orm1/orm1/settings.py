@@ -36,11 +36,14 @@ CORS_ALLOW_CREDENTIALS =True
 
 import os
 
-SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'your-default-secret-key')
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'django-insecure-)pt8y2inum55@8lr#w%d_0u8ikhl6h^ogje(=l!p4=ur--it=0')
 
+
+# Debug statement to verify the secret key
+print("SECRET_KEY:", SECRET_KEY)  # Add this line
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DJANGO_DEBUG', 'False').lower() == 'true'
 
 ALLOWED_HOSTS = ["*"]
 
