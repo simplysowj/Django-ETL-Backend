@@ -49,9 +49,4 @@ jobs:
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_559ce461e77f4da5bb5980d4d8bd27b0 }}
         images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_401222c801b5475884235f8e1a0d147a }}/django-backend:latest'
-    - name: Create Django superuser
-      run: |
-        echo "Creating Django superuser..."
-        docker exec -it ec4b207cae27 python manage.py createsuperuser --noinput --username admin --email admin@example.com --password $DJANGO_SUPERUSER_PASSWORD
-      env:
-        DJANGO_SUPERUSER_PASSWORD: ${{ secrets.DJANGO_SUPERUSER_PASSWORD }}
+   
