@@ -6,7 +6,7 @@ WORKDIR /app
 
 # Step 3: Copy the backend code into the container
 
-COPY requirements.txt /app/requirements.txt
+COPY ./orm1/requirements.txt /app/requirements.txt
 # Step 4: Install dependencies from requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
