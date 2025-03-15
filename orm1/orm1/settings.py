@@ -32,11 +32,11 @@ CORS_ALLOW_CREDENTIALS =True
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-#SECRET_KEY = 'django-insecure-)pt8y2inum55@8lr#w%d_0u8ikhl6h^ogje(=l!p4=ur--it=0'
+SECRET_KEY = 'django-insecure-)pt8y2inum55@8lr#w%d_0u8ikhl6h^ogje(=l!p4=ur--it=0'
 
 import os
 
-SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'django-insecure-)pt8y2inum55@8lr#w%d_0u8ikhl6h^ogje(=l!p4=ur--it=0')
+#SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'django-insecure-)pt8y2inum55@8lr#w%d_0u8ikhl6h^ogje(=l!p4=ur--it=0')
 
 
 # Debug statement to verify the secret key
