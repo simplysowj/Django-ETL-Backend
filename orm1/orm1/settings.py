@@ -18,7 +18,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 #CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",  # Vite React URL
-    "https://616b-2601-cb-8200-61c0-f547-8d04-27f4-4b4e.ngrok-free.app"
+    "https://616b-2601-cb-8200-61c0-f547-8d04-27f4-4b4e.ngrok-free.app",
+    
+    "https://etl-backend-new-gwaygxdxgedhdjaz.eastus2-01.azurewebsites.net"
     
 ]
 
@@ -30,22 +32,28 @@ CORS_ALLOW_CREDENTIALS =True
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-#SECRET_KEY = 'django-insecure-)pt8y2inum55@8lr#w%d_0u8ikhl6h^ogje(=l!p4=ur--it=0'
+SECRET_KEY = 'django-insecure-)pt8y2inum55@8lr#w%d_0u8ikhl6h^ogje(=l!p4=ur--it=0'
 
 import os
 
-SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'your-default-secret-key')
+#SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'django-insecure-)pt8y2inum55@8lr#w%d_0u8ikhl6h^ogje(=l!p4=ur--it=0')
 
+
+# Debug statement to verify the secret key
+print("SECRET_KEY:", SECRET_KEY)  # Add this line
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DJANGO_DEBUG', 'False').lower() == 'true'
 
 ALLOWED_HOSTS = ["*"]
 
-ALLOWED_HOSTS = ['https://616b-2601-cb-8200-61c0-f547-8d04-27f4-4b4e.ngrok-free.app',
-                "localhost", "127.0.0.1",'616b-2601-cb-8200-61c0-f547-8d04-27f4-4b4e.ngrok-free.app']
+#ALLOWED_HOSTS = ['https://616b-2601-cb-8200-61c0-f547-8d04-27f4-4b4e.ngrok-free.app',
+ #               "localhost", "127.0.0.1",'616b-2601-cb-8200-61c0-f547-8d04-27f4-4b4e.ngrok-free.app',
+  #              'etl-backend-new-gwaygxdxgedhdjaz.eastus2-01.azurewebsites.net' ]
 CSRF_TRUSTED_ORIGINS = ["https://616b-2601-cb-8200-61c0-f547-8d04-27f4-4b4e.ngrok-free.app",
-                        "https://etlbackenddjango.azurewebsites.net"]
+                        "https://etlbackenddjango.azurewebsites.net",
+    "https://etl-backend-new-gwaygxdxgedhdjaz.eastus2-01.azurewebsites.net"]
+
 
 # Application definition
 
