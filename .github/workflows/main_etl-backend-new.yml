@@ -49,4 +49,9 @@ jobs:
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_559ce461e77f4da5bb5980d4d8bd27b0 }}
         images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_401222c801b5475884235f8e1a0d147a }}/django-backend:latest'
-   
+    - name: Run Migrations and Create Superuser
+      run: |
+        az webapp ssh --resource-group django-react-app1 --name etl-backend-new --command "python manage.py migrate"
+        az webapp ssh --resource-group django-react-app1 --name etl-backend-new --command "echo \"from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.create_superuser('admin', 'admin@example.com', 'AdminPassword123')\" | python manage.py shell"
+      env:
+        DJANGO_SUPERUSER_PASSWORD: ${{ secrets.DJANGO_SUPERUSER_PASSWORD }}
