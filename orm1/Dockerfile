@@ -5,18 +5,13 @@ FROM python:3.11-slim
 WORKDIR /app
 
 # Step 3: Copy the requirements file into the container
-COPY backend/apiview/orm1/requirements.txt /app/requirements.txt
+COPY requirements.txt /app/requirements.txt
 
-
-Copy
-# Copy the requirements file
-COPY ./orm1/requirements.txt /app/requirements.txt
-
-# Install dependencies
+# Step 4: Install dependencies from requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the rest of the application code
-COPY ./orm1 /app
+# Step 5: Copy the rest of the backend code into the container
+COPY . /app
 
 # Step 6: Expose port 8000 for the Django app
 EXPOSE 8000
