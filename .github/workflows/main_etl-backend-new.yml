@@ -52,16 +52,4 @@ jobs:
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_559ce461e77f4da5bb5980d4d8bd27b0 }}
         images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_401222c801b5475884235f8e1a0d147a }}/django-backend:latest'
 
-    - name: Run Migrations
-      run: |
-        echo "Waiting for app to start..."
-        sleep 30  # Wait for the app to be fully deployed
-        echo "Applying migrations..."
-        az webapp config appsettings set --name etl-backend-new --resource-group django-react-app1 --settings DJANGO_SUPERUSER=false
-        az webapp ssh --name etl-backend-new --resource-group django-react-app1 --command "python manage.py migrate"
-
-    - name: Create Superuser
-      run: |
-        echo "Creating Django superuser..."
-        az webapp config appsettings set --name etl-backend-new --resource-group django-react-app1 --settings DJANGO_SUPERUSER=true
-        az webapp ssh --name etl-backend-new --resource-group django-react-app1 --command "python manage.py createsuperuser --noinput --username admin --email admin@example.com --password AdminPassword123"
+    
