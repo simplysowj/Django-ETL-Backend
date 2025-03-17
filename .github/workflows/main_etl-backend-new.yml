@@ -49,16 +49,18 @@ jobs:
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_559ce461e77f4da5bb5980d4d8bd27b0 }}
         images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_401222c801b5475884235f8e1a0d147a }}/django-backend:latest'
-    - name: Run Migrations & Create Superuser
+   - name: Run Migrations & Create Superuser
       run: |
-        # Wait for app to be fully deployed before running the next commands
         echo "Waiting for app to start..."
-        sleep 30  # This ensures the app has time to restart
+        sleep 30  # Ensure the app has time to restart and be ready
 
         echo "Applying migrations..."
-        az webapp ssh --name etl-backend-new --resource-group django-react-app1 --command "cd /home/site/wwwroot && python manage.py migrate"
+        az webapp ssh --name etl-backend-new --resource-group django-react-app1
 
+        # After establishing SSH session, you need to run the following commands manually:
+        # Run the Django migrations
+        cd /home/site/wwwroot && python manage.py migrate
+
+        # Create a Django superuser
         echo "Creating Django superuser..."
-        az webapp ssh --name etl-backend-new --resource-group django-react-app1 --command "cd /home/site/wwwroot && echo \"from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.create_superuser('admin', 'admin@example.com', 'AdminPassword123')\" | python manage.py shell"
-      env:
-        DJANGO_SUPERUSER_PASSWORD: ${{ secrets.DJANGO_SUPERUSER_PASSWORD }}
+        echo "from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.create_superuser('admin', 'admin@example.com', 'AdminPassword123')" | python manage.py shell
