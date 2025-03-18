@@ -16,22 +16,18 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 
-class CreateSuperUser(APIView):
+class CreateSuperUser(View):
+    @csrf_exempt
     def post(self, request):
-        # Getting data from the request
+        # logic to create a superuser
         username = request.data.get('username')
         password = request.data.get('password')
         email = request.data.get('email')
-
-        if not username or not password or not email:
-            return Response({"error": "Missing required fields: username, password, email."}, status=status.HTTP_400_BAD_REQUEST)
         
-        try:
-            # Create a superuser
+        if username and password and email:
             user = User.objects.create_superuser(username=username, password=password, email=email)
-            return Response({"message": "Superuser created successfully!", "username": user.username}, status=status.HTTP_201_CREATED)
-        except Exception as e:
-            return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+            return JsonResponse({"message": "Superuser created successfully!"}, status=201)
+        return JsonResponse({"message": "Invalid input data"}, status=400)
 
 # Global variables for script control
 script_running = False
