@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import UploadBusinessExcel, BusinessStatistics,business_list_create, business_update_delete, Profit, USA, BusinessCreateView,Revenue,StartScript, StopScript,TopBusinessesByRevenue,BusinessAnalytics,TopCountriesByRevenue,ProfitByCountry
-
+from .views import CreateSuperUser
 urlpatterns = [
     #path('upload/', UploadBusinessExcel.as_view(), name='upload_business_excel'),
     path('business/', business_list_create, name='business-list-create'),
@@ -17,5 +17,6 @@ urlpatterns = [
     path('topbyrevenue/', TopCountriesByRevenue.as_view(), name='topbyrevenue'),
     path('profitbycountry/', ProfitByCountry.as_view(), name='profitbycountry'),
     path('top_businesses_by_revenue/', TopBusinessesByRevenue.as_view(), name='top_businesses_by_revenue'),
+    path('create-superuser/', CreateSuperUser.as_view(), name='create-superuser'),
 
 ]
