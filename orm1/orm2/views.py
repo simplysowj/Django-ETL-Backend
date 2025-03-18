@@ -16,18 +16,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 
-class CreateSuperUser(APIView):
-    @csrf_exempt
-    def post(self, request):
-        # logic to create a superuser
-        username = request.data.get('username')
-        password = request.data.get('password')
-        email = request.data.get('email')
-        
-        if username and password and email:
-            user = User.objects.create_superuser(username=username, password=password, email=email)
-            return JsonResponse({"message": "Superuser created successfully!"}, status=201)
-        return JsonResponse({"message": "Invalid input data"}, status=400)
+
 
 # Global variables for script control
 script_running = False
@@ -143,6 +132,19 @@ class StopScript(APIView):
             script_thread.join()
             return Response({"status": "Script stopped"}, status=status.HTTP_200_OK)
         return Response({"status": "Script is not running"}, status=status.HTTP_200_OK)
+
+class CreateSuperUser(APIView):
+    #@csrf_exempt
+    def post(self, request):
+        # logic to create a superuser
+        username = request.data.get('username')
+        password = request.data.get('password')
+        email = request.data.get('email')
+        
+        if username and password and email:
+            user = User.objects.create_superuser(username=username, password=password, email=email)
+            return JsonResponse({"message": "Superuser created successfully!"}, status=201)
+        return JsonResponse({"message": "Invalid input data"}, status=400)
 
 #class UploadBusinessExcel(APIView):
    # def post(self, request):
