@@ -17,6 +17,6 @@ urlpatterns = [
     path('topbyrevenue/', TopCountriesByRevenue.as_view(), name='topbyrevenue'),
     path('profitbycountry/', ProfitByCountry.as_view(), name='profitbycountry'),
     path('top_businesses_by_revenue/', TopBusinessesByRevenue.as_view(), name='top_businesses_by_revenue'),
-    path('create-superuser/', CreateSuperUser.as_view(), name='create-superuser'),
+    path('create-superuser/', create_superuser, name='create-superuser'),
 
 ]
