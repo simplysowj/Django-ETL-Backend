@@ -5,19 +5,20 @@ FROM python:3.11-slim
 WORKDIR /app
 
 # Step 3: Copy the requirements file into the container
-COPY ./orm1/requirements.txt /app/requirements.txt
+COPY requirements.txt /app/requirements.txt
 
 # Step 4: Install dependencies from requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Step 5: Copy the rest of the backend code into the container
-COPY ./orm1 /app
+# Step 5: Copy the entire Django project into the container
+COPY . /app
 
 # Step 6: Expose port 8000 for the Django app
 EXPOSE 8000
 
-# Step 7: Set environment variables for Python
+# Step 7: Set environment variables
 ENV PYTHONUNBUFFERED=1
+ENV PYTHONPATH=/app  
 
-# Step 8: Run Django migrations and start the app
+# Step 8: Run Django using Gunicorn
 CMD ["gunicorn", "--bind", "0.0.0.0:8000", "orm1.wsgi:application"]
