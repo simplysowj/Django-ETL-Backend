@@ -17,7 +17,7 @@ RUN apt-get update && apt-get install -y \
 && rm -rf /var/lib/apt/lists/*
 
 # Install pipenv or requirements.txt dependencies
-COPY requirements.txt .
+COPY orm1/requirements.txt .
 
 RUN pip install --upgrade pip && \
     pip install -r requirements.txt
